@@ -53,11 +53,30 @@ class Calculator {
         this.currentOperand = result;
         this.operator = undefined;
     }
-    updateDisplay(){
-        this.currentOperandTextElement.innerText = this.currentOperand;
-        if(this.operator != null){
-            this.previousOperandTextElement.innerText = `${this.previousOperand} ${this.operator}`;
+    styleNumber(number){
+        let numberToString = number.toString();
+        let integerDigits =  parseFloat(numberToString.split('.')[0]);
+        let decimalDigits =  numberToString.split('.')[1];
+        let integerDisplay;
+        if(isNaN(integerDigits)){
+            integerDisplay = '';
+        }else{
+            integerDisplay = integerDigits.toLocaleString('en', {maximumFractionDigits: 0});
         }
+        if(decimalDigits != null){
+            return `${integerDisplay}.${decimalDigits}`;
+        }else{
+            return integerDisplay;
+        }
+
+    }
+    updateDisplay(){
+        this.currentOperandTextElement.innerText = this.styleNumber(this.currentOperand);
+        if(this.operator != null){
+            this.previousOperandTextElement.innerText = `${this.styleNumber(this.previousOperand)} ${this.operator}`;
+        }else
+            this.previousOperandTextElement.innerText = this.styleNumber(this.previousOperand);
+
     }
 }
 

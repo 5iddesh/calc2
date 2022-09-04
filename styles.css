@@ -10,7 +10,6 @@ body{
     display: grid;
     justify-content: center;
     align-content: center;
- 
     max-width: 60%;
     grid-template-columns: repeat(4, 135px);
     grid-template-rows: 60px minmax(150px, auto) repeat(5, 60px);
@@ -69,3 +68,11 @@ body{
     color: black;
     font-size: 2.5rem;
 }
+
+@media only screen and (max-width: 950px) {
+    .grid{
+        grid-template-columns: repeat(4, 50px);
+        grid-template-rows: 40px minmax(150px, auto) repeat(5, 40px);
+
+    }
+  }
